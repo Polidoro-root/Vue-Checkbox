@@ -1,16 +1,29 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <Form @submit="handleSubmit">
+    <Checkbox name="isPizza" :value="true" />
+
+    <button class="" type="submit">Submit</button>
+  </Form>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { Form } from "vee-validate"
+import Checkbox from "./components/Checkbox.vue"
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
+    Checkbox,
+    Form,
+  },
+  setup() {
+    const handleSubmit = (values) => {
+      values.isPizza = !!values.isPizza
+      console.log(values)
+    }
+    return { handleSubmit }
+  },
 }
 </script>
 
